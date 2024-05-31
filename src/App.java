@@ -15,9 +15,7 @@ public class App {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection(url, user, password);
             Statement st = con.createStatement();
-            //String insertData = "INSERT INTO students (name, roll_no, subject, marks) VALUES (?, ?, ?, ?)";
-
-            // Inserting sample records
+          
             String sql = "INSERT INTO students (Id,name, roll_no, subject, marks) VALUES ";
             sql += "(6,'Lavanya Baini', '511', 'ESY', 85), ";
             sql += "(7,'Samarth Joshi', '512', 'CSP', 78), ";
@@ -26,18 +24,15 @@ public class App {
             sql += "(10,'Sneha Kota', '515', 'MAR', 75)";
             st.executeUpdate(sql);
 
-            // Selecting students with marks greater than 70
-            sql = "SELECT * FROM students WHERE marks > 70";
-            ResultSet rs = st.executeQuery(sql);
+            ResultSet rs = st.executeQuery("SELECT * FROM students WHERE marks > 70");
 
-            // Displaying the results
             while (rs.next()) {
                 int Id = rs.getInt("Id");
                 String name = rs.getString("name");
                 String rollNo = rs.getString("roll_no");
                 String subject = rs.getString("subject");
                 int marks = rs.getInt("marks");
-                System.out.println("ID: " + Id + ", Name: " + name + ", Roll No: " + rollNo + ", Subject: " + subject + ", Marks: " + marks);
+                System.out.println(+ Id + "," + name + "," + rollNo + "," + subject + "," + marks);
             }
         } catch (Exception e) {
             System.out.println(e);
